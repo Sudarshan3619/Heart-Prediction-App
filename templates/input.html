@@ -1,0 +1,19 @@
+<html>  
+<head>  
+    <title>Enter the Required Features to predict the output</title> 
+    
+</head>  
+<body bgcolor=cyan>  
+    <form method = "post" action = "http://localhost:5000/predict">  
+
+    <p>Male <input type='text' name='male' placeholder='female:0 male:1'> </p>
+    <p>Age <input type='text' name='age' placeholder='integer value'></p>
+    <p>cigsPerDay <input type='text' name='cigsPerDay' placeholder='enter integer value'></p>
+    <p>prevalentStroke <input type='text' name='prevalentStroke' placeholder='yes:1  No:0'></p>
+    <p>prevalentHyp <input type='text' name='prevalentHyp' placeholder='yes:1 No:0'></p>
+    <p>diabetes <input type='text' name='diabetes' placeholder='yes:1 No:0'></p>
+    <p>sysBP <input type='text' name='sysBP' placeholder='integer value'></p>
+    <p><input type='submit' value='predict'></p>
+    </form>  
+</body>  
+</html>  
