@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 def scaler(self,x,feature):
     data=pd.read_csv("Data.csv")
     self.mean=data[feature].mean()
