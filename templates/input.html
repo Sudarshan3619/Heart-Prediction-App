@@ -4,7 +4,7 @@
     
 </head>  
 <body bgcolor=cyan>  
-    <form method = "post" action = "http://localhost:5000/predict">  
+    <form method = "post" action = "{{ url_for('predict')}}">  
 
     <p>Male <input type='text' name='male' placeholder='female:0 male:1'> </p>
     <p>Age <input type='text' name='age' placeholder='integer value'></p>
