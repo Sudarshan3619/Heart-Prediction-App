@@ -1,21 +1,11 @@
 from flask import *
 import pickle
 import numpy as np
-from scaling import scaling
-import os
-
+from scaling import data_preprocessing
 
 
 app=Flask(__name__)
 
-#model=pickle.load(open('heart.pkl','rb'))
-#scaling=pickle.load(open('scaling_file.pkl','rb'))
-
-with open('heart_all.pkl','rb') as f:
-    rfc,lr,abc,knn,scale=pickle.load(f)
-
-def scaler(x,mean,sd):
-    return ((x-mean)/sd)
 
 @app.route('/')
 def home():
@@ -29,24 +19,7 @@ def randforest():
 def predict():
     if request.method=='POST':
         data=request.form
-
-        l=[]   
-        l.append(int(data['male']))
-        l.append(int(data['age']))
-        l.append(float(data['cigsPerDay']))
-        l.append(int(data['prevalentStroke']))
-        l.append(int(data['prevalentHyp']))
-        l.append(int(data['diabetes']))
-        
-        a=float(data['sysBP'])
-        if a>0:
-            a=np.log(a)
-        l.append(a)
-        i=0
-        for feature in ['male','age','cigsPerDay','prevalentStroke','prevalentHyp','diabetes','sysBP']:
-            l[i]=scaler(l[i],scale.mean(feature),scale.sd(feature))
-            i+=1;
-        
+        l=data_preprocessing(data)
         inputs=np.array([l])
         #print(inputs)
         #model=pickle.load(open('heart.pkl','rb'))
@@ -61,28 +34,7 @@ def fourmodelclassifier():
 def predict_by4():
     if request.method=='POST':
         data=request.form
-        l=[]
-        l.append(int(data['male']))
-        l.append(int(data['age']))
-        l.append(float(data['cigsPerDay']))
-        l.append(int(data['prevalentStroke']))
-        l.append(int(data['prevalentHyp']))
-        l.append(int(data['diabetes']))
-        
-        a=float(data['sysBP'])
-        
-        #l.append(a)
-        if a>0:
-            a=np.log(a)
-        
-        l.append(a)
-        i=0
-        for feature in ['male','age','cigsPerDay','prevalentStroke','prevalentHyp','diabetes','sysBP']:
-            l[i]=scaler(l[i],scale.mean(feature),scale.sd(feature))
-            i+=1;
-        
-        #inputs=np.array([l])
-        
+        l=data_preprocessing(data)
         inputs=np.array([l])
         result=[0,0,0,0]
         #model=pickle.load(open('heart.pkl','rb'))
@@ -99,4 +51,6 @@ def predict_by4():
         
         
 if __name__=='__main__':
+    with open('heart_all.pkl','rb') as f:
+        rfc,lr,abc,knn=pickle.load(f)
     app.run(debug=True)
