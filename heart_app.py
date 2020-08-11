@@ -31,7 +31,7 @@ def fourmodelclassifier():
     return render_template('input1.html')
 
 @app.route('/predict1',methods=['POST'])
-def predict_by4():
+def predict1():
     if request.method=='POST':
         data=request.form
         l=data_preprocessing(data)
