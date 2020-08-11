@@ -2,6 +2,7 @@ from flask import *
 import pickle
 import numpy as np
 from scaling import scaling
+import os
 
 
 
@@ -98,4 +99,7 @@ def predict_by4():
         
         
 if __name__=='__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000)
+    app.run(host='0.0.0.0', port=port, debug=True)
+
+    #app.run()
