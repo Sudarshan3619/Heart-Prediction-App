@@ -5,8 +5,7 @@ from scaling import data_preprocessing
 
 
 app=Flask(__name__)
-with open('heart_all.pkl','rb') as f:
-    rfc,lr,abc,knn = pickle.load(f)
+
 
 @app.route('/')
 def home():
@@ -22,8 +21,7 @@ def predict():
         data=request.form
         l=data_preprocessing(data)
         inputs=np.array([l])
-        #print(inputs)
-        #model=pickle.load(open('heart.pkl','rb'))
+        
         result=rfc.predict(inputs)
         return render_template('output.html',data=result[0])
 
@@ -52,4 +50,6 @@ def predict1():
         
         
 if __name__=='__main__':
+    with open('heart_all.pkl','rb') as f:
+        rfc,lr,abc,knn=pickle.load(f)
     app.run(debug=True)
