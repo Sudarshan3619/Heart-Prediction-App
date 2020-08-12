@@ -1,7 +1,7 @@
 from flask import *
 import pickle
 import numpy as np
-from scaling import data_preprocessing
+#from scaling import data_preprocessing
 
 
 app=Flask(__name__)
@@ -18,7 +18,10 @@ def randforest():
 def predict():
     if request.method=='POST':
         data=request.form
-        l=data_preprocessing(data)
+        l=[]
+        for x,y in data.items():
+            l.append(float(y))
+        #l=data_preprocessing(data)
         inputs=np.array([l])
         rfc,lr,abc,knn=pickle.load(open('heart_all.pkl','rb'))
         result=rfc.predict(inputs)
@@ -32,7 +35,9 @@ def fourmodelclassifier():
 def predict1():
     if request.method=='POST':
         data=request.form
-        l=data_preprocessing(data)
+        l=[]
+        for x,y in data.items():
+            l.append(float(y))
         inputs=np.array([l])
         result=[0,0,0,0]
         #model=pickle.load(open('heart.pkl','rb'))
