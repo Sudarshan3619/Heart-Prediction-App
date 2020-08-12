@@ -21,7 +21,7 @@ def predict():
         data=request.form
         l=data_preprocessing(data)
         inputs=np.array([l])
-        
+        rfc,lr,abc,knn=pickle.load(open('heart_all.pkl','rb'))
         result=rfc.predict(inputs)
         return render_template('output.html',data=result[0])
 
@@ -36,7 +36,7 @@ def predict1():
         l=data_preprocessing(data)
         inputs=np.array([l])
         result=[0,0,0,0]
-        #model=pickle.load(open('heart.pkl','rb'))
+        rfc,lr,abc,knn=pickle.load(open('heart_all.pkl','rb'))
         result[0]=rfc.predict(inputs)[0]
         result[1]=lr.predict(inputs)[0]
         result[2]=abc.predict(inputs)[0]
@@ -50,6 +50,6 @@ def predict1():
         
         
 if __name__=='__main__':
-    with open('heart_all.pkl','rb') as f:
-        rfc,lr,abc,knn=pickle.load(f)
+    ##with open('heart_all.pkl','rb') as f:
+    ##rfc,lr,abc,knn=pickle.load(f)
     app.run(debug=True)
