@@ -1,18 +1,27 @@
 <html>  
 <head>  
     <title>Enter the Required Features to predict the output</title> 
-    
+    <style>p {text-align:center;}</style>
+    <style>h1 {text-align:center;}</style>
 </head>  
-<body bgcolor=cyan>  
-    <form action = "{{ url_for('predict1')}}"method = "post">  
+<body background= '/static/bg2.jpg'>  
+    <h1 style="color:#FF33E9"> Enter the Details to Predict </h1>
+    <form action = "{{ url_for('predict')}}" method = "post">  
 
-    <p>Male <input type='text' name='male' placeholder='female:0 male:1'> </p>
-    <p>Age <input type='text' name='age' placeholder='integer value'></p>
-    <p>cigsPerDay <input type='text' name='cigsPerDay' placeholder='enter integer value'></p>
-    <p>prevalentStroke <input type='text' name='prevalentStroke' placeholder='yes:1  No:0'></p>
-    <p>prevalentHyp <input type='text' name='prevalentHyp' placeholder='yes:1 No:0'></p>
-    <p>diabetes <input type='text' name='diabetes' placeholder='yes:1 No:0'></p>
-    <p>sysBP <input type='text' name='sysBP' placeholder='integer value'></p>
+    <p><input type='text' size="50" name='male' placeholder='Gender (Female:0 Male:1)'> </p>
+
+    <p><input type='text' size="50" name='age' placeholder='Age (Integer Value)'></p>
+
+    <p><input type='text' size="50" name='cigsPerDay' placeholder='Cigarettes smoked in a day (Integer Value)'></p>
+
+    <p><input type='text' size="50" name='prevalentStroke' placeholder='Previously had any heart stroke (yes:1  No:0)'></p>
+
+    <p><input type='text' size="50" name='prevalentHyp' placeholder='hypertensive or not (yes:1 No:0)'></p>
+
+    <p><input type='text' size="50" name='diabetes' placeholder='Diabetic person (yes:1 No:0)'></p>
+
+    <p><input type='text' size="50" name='sysBP' placeholder='Systolic Blood Pressure (Integer Value)'></p>
+
     <p><input type='submit' value='predict'></p>
     </form>  
 </body>  
